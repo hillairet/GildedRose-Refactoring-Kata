@@ -21,21 +21,8 @@ def _update_item(item):
         update_aged_brie(item)
         return
 
-    if item_ext.is_backstage_passes:
-        item.sell_in = item.sell_in - 1
-        if item.sell_in < 0:
-            item.quality = 0
-            return
-        if item.quality > 49:
-            return
-
-        quality_increment = 1
-        if item.sell_in < 10:
-            quality_increment += 1
-        if item.sell_in < 5:
-            quality_increment += 1
-
-        item.quality = item.quality + quality_increment
+    if update_backstage_passes := _check_for_backstage_passes(item):
+        update_backstage_passes(item)
         return
 
     if item.quality > 0:
@@ -72,11 +59,31 @@ def _check_for_aged_brie(item: Item) -> Optional[Callable]:
     return _update_aged_brie
 
 
-class ItemExtended(Item):
-    @property
-    def is_backstage_passes(self) -> bool:
-        return self.name.startswith('Backstage passes')
+def _check_for_backstage_passes(item: Item) -> Optional[Callable]:
+    if not item.name.startswith('Backstage passes'):
+        return
 
+    def _update_backstage_passes(item: Item) -> None:
+        item.sell_in = item.sell_in - 1
+        if item.sell_in < 0:
+            item.quality = 0
+            return
+        if item.quality > 49:
+            return
+
+        quality_increment = 1
+        if item.sell_in < 10:
+            quality_increment += 1
+        if item.sell_in < 5:
+            quality_increment += 1
+
+        item.quality = item.quality + quality_increment
+        return
+
+    return _update_backstage_passes
+
+
+class ItemExtended(Item):
     @property
     def is_sulfuras(self) -> bool:
         return self.name.startswith('Sulfuras')
