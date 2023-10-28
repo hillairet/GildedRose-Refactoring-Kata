@@ -867,7 +867,7 @@ Conjured Mana Cake,0,20,-1,16
 Conjured Mana Cake,0,15,-1,11
 Conjured Mana Cake,0,10,-1,6
 Conjured Mana Cake,0,5,-1,1
-Conjured Mana Cake,0,0,-1,-4
+Conjured Mana Cake,0,0,-1,0
 Conjured Mana Cake,-5,50,-6,46
 Conjured Mana Cake,-5,45,-6,41
 Conjured Mana Cake,-5,40,-6,36
@@ -878,7 +878,7 @@ Conjured Mana Cake,-5,20,-6,16
 Conjured Mana Cake,-5,15,-6,11
 Conjured Mana Cake,-5,10,-6,6
 Conjured Mana Cake,-5,5,-6,1
-Conjured Mana Cake,-5,0,-6,-4
+Conjured Mana Cake,-5,0,-6,0
 Conjured Mana Cake,-10,50,-11,46
 Conjured Mana Cake,-10,45,-11,41
 Conjured Mana Cake,-10,40,-11,36
@@ -889,7 +889,7 @@ Conjured Mana Cake,-10,20,-11,16
 Conjured Mana Cake,-10,15,-11,11
 Conjured Mana Cake,-10,10,-11,6
 Conjured Mana Cake,-10,5,-11,1
-Conjured Mana Cake,-10,0,-11,-4
+Conjured Mana Cake,-10,0,-11,0
 Conjured Mana Cake,-15,50,-16,46
 Conjured Mana Cake,-15,45,-16,41
 Conjured Mana Cake,-15,40,-16,36
@@ -900,7 +900,7 @@ Conjured Mana Cake,-15,20,-16,16
 Conjured Mana Cake,-15,15,-16,11
 Conjured Mana Cake,-15,10,-16,6
 Conjured Mana Cake,-15,5,-16,1
-Conjured Mana Cake,-15,0,-16,-4
+Conjured Mana Cake,-15,0,-16,0
 Conjured Mana Cake,-20,50,-21,46
 Conjured Mana Cake,-20,45,-21,41
 Conjured Mana Cake,-20,40,-21,36
@@ -911,7 +911,7 @@ Conjured Mana Cake,-20,20,-21,16
 Conjured Mana Cake,-20,15,-21,11
 Conjured Mana Cake,-20,10,-21,6
 Conjured Mana Cake,-20,5,-21,1
-Conjured Mana Cake,-20,0,-21,-4
+Conjured Mana Cake,-20,0,-21,0
 Conjured Mana Cake,-25,50,-26,46
 Conjured Mana Cake,-25,45,-26,41
 Conjured Mana Cake,-25,40,-26,36
@@ -922,7 +922,7 @@ Conjured Mana Cake,-25,20,-26,16
 Conjured Mana Cake,-25,15,-26,11
 Conjured Mana Cake,-25,10,-26,6
 Conjured Mana Cake,-25,5,-26,1
-Conjured Mana Cake,-25,0,-26,-4
+Conjured Mana Cake,-25,0,-26,0
 Conjured Mana Cake,-30,50,-31,46
 Conjured Mana Cake,-30,45,-31,41
 Conjured Mana Cake,-30,40,-31,36
@@ -933,6 +933,6 @@ Conjured Mana Cake,-30,20,-31,16
 Conjured Mana Cake,-30,15,-31,11
 Conjured Mana Cake,-30,10,-31,6
 Conjured Mana Cake,-30,5,-31,1
-Conjured Mana Cake,-30,0,-31,-4
+Conjured Mana Cake,-30,0,-31,0
 "Sulfuras, Hand of Ragnaros",0,80,0,80
 "Sulfuras, Hand of Ragnaros",-1,80,-1,80

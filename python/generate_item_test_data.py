@@ -41,8 +41,9 @@ if __name__ == '__main__':
     item_data = []
     for item, expected in zip(items, expected_items):
         if 'Conjured' in item.name and item.sell_in < 1:
+            expected_quality = item.quality - 4 if item.quality > 3 else 0
             item_data.append(
-                (item.name, item.sell_in, item.quality, expected.sell_in, item.quality - 4)
+                (item.name, item.sell_in, item.quality, expected.sell_in, expected_quality)
             )
             continue
         item_data.append(
