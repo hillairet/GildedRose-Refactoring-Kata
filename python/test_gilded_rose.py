@@ -1,43 +1,32 @@
 # -*- coding: utf-8 -*-
-from itertools import product
+import csv
 
 from pytest import mark, param
 
+from generate_item_test_data import ITEMS_DATA_CSV
 from gilded_rose import GildedRose, Item
-
-NAMES = [
-    "+5 Dexterity Vest",
-    "Aged Brie",
-    "Elixir of the Mongoose",
-    "Backstage passes to a TAFKAL80ETC concert",
-    "Conjured Mana Cake",
-]
-LEGENDARY_ITEM = "Sulfuras, Hand of Ragnaros"
 
 
 def item_fixture():
-    sell_ins = range(50, -31, -5)
-    qualities = range(50, -1, -5)
-
-    sell_ins_qualities = product(sell_ins, qualities)
-
-    items_2tuples = product(NAMES, sell_ins_qualities)
-
-    params = [param(it[0], it[1][0], it[1][1]) for it in items_2tuples]
-
-    params.append(param(LEGENDARY_ITEM, 0, 80))
-    params.append(param(LEGENDARY_ITEM, -1, 80))
+    params = []
+    with open(ITEMS_DATA_CSV, newline='') as csvfile:
+        itemreader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        next(itemreader)
+        for row in itemreader:
+            data = [row[0]] + [int(r) for r in row[1:]]
+            params.append(param(*data))
 
     return params
 
 
-@mark.parametrize('name, sell_in, quality', item_fixture())
-def test_gilded_rose(name, sell_in, quality):
-    items = [Item(name, sell_in, quality)]
+@mark.parametrize(
+    'name, input_sell_in, input_quality, expected_sell_in, expected_quality', item_fixture()
+)
+def test_gilded_rose(name, input_sell_in, input_quality, expected_sell_in, expected_quality):
+    items = [Item(name, input_sell_in, input_quality)]
     gilded_rose = GildedRose(items)
     gilded_rose.update_quality()
 
-    if name == LEGENDARY_ITEM:
-        assert items[0].sell_in == sell_in
-    else:
-        assert items[0].sell_in == sell_in - 1
+    actual = items[0]
+    assert actual.sell_in == expected_sell_in
+    assert actual.quality == expected_quality
