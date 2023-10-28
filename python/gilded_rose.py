@@ -12,9 +12,7 @@ class GildedRose(object):
 
 
 def _update_item(item):
-    item_ext = ItemExtended(name=item.name, sell_in=item.sell_in, quality=item.quality)
-
-    if item_ext.is_sulfuras:
+    if _check_for_sulfuras(item):
         return
 
     if update_aged_brie := _check_for_aged_brie(item):
@@ -42,6 +40,10 @@ class Item:
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
+
+def _check_for_sulfuras(item: Item) -> bool:
+    return item.name.startswith('Sulfuras')
 
 
 def _check_for_aged_brie(item: Item) -> Optional[Callable]:
@@ -81,13 +83,3 @@ def _check_for_backstage_passes(item: Item) -> Optional[Callable]:
         return
 
     return _update_backstage_passes
-
-
-class ItemExtended(Item):
-    @property
-    def is_sulfuras(self) -> bool:
-        return self.name.startswith('Sulfuras')
-
-    @property
-    def is_conjured(self) -> bool:
-        return self.name.startswith('Conjured')
