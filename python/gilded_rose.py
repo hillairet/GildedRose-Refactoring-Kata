@@ -11,27 +11,28 @@ class GildedRose(object):
 
 
 def _update_item(item):
-    if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert":
+    item_ext = ItemExtended(name=item.name, sell_in=item.sell_in, quality=item.quality)
+    if (not item_ext.is_aged_brie) and (not item_ext.is_backstage_passes):
         if item.quality > 0:
-            if item.name != "Sulfuras, Hand of Ragnaros":
+            if not item_ext.is_sulfuras:
                 item.quality = item.quality - 1
     else:
         if item.quality < 50:
             item.quality = item.quality + 1
-            if item.name == "Backstage passes to a TAFKAL80ETC concert":
+            if item_ext.is_backstage_passes:
                 if item.sell_in < 11:
                     if item.quality < 50:
                         item.quality = item.quality + 1
                 if item.sell_in < 6:
                     if item.quality < 50:
                         item.quality = item.quality + 1
-    if item.name != "Sulfuras, Hand of Ragnaros":
+    if not item_ext.is_sulfuras:
         item.sell_in = item.sell_in - 1
     if item.sell_in < 0:
-        if item.name != "Aged Brie":
-            if item.name != "Backstage passes to a TAFKAL80ETC concert":
+        if not item_ext.is_aged_brie:
+            if not item_ext.is_backstage_passes:
                 if item.quality > 0:
-                    if item.name != "Sulfuras, Hand of Ragnaros":
+                    if not item_ext.is_sulfuras:
                         item.quality = item.quality - 1
             else:
                 item.quality = item.quality - item.quality
