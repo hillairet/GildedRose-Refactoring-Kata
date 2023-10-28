@@ -48,3 +48,21 @@ class Item:
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
+
+class ItemExtended(Item):
+    @property
+    def is_aged_brie(self) -> bool:
+        return self.name == 'Aged Brie'
+
+    @property
+    def is_backstage_passes(self) -> bool:
+        return self.name.startswith('Backstage passes')
+
+    @property
+    def is_sulfuras(self) -> bool:
+        return self.name.startswith('Sulfuras')
+
+    @property
+    def is_conjured(self) -> bool:
+        return self.name.startswith('Conjured')
