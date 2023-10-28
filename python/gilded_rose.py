@@ -23,6 +23,10 @@ def _update_item(item):
         update_backstage_passes(item)
         return
 
+    if update_conjured := _check_for_conjured(item):
+        update_conjured(item)
+        return
+
     if item.quality > 0:
         item.quality = item.quality - 1
 
@@ -83,3 +87,17 @@ def _check_for_backstage_passes(item: Item) -> Optional[Callable]:
         return
 
     return _update_backstage_passes
+
+
+def _check_for_conjured(item: Item) -> Optional[Callable]:
+    if not item.name.startswith('Conjured'):
+        return
+
+    def _update_conjured(item: Item) -> None:
+        item.sell_in = item.sell_in - 1
+        if item.quality < 2:
+            item.quality = 0
+            return
+        item.quality = item.quality - 2
+
+    return _update_conjured

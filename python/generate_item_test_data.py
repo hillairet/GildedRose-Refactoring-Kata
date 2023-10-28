@@ -15,7 +15,7 @@ NAMES = [
 ]
 LEGENDARY_ITEM = 'Sulfuras, Hand of Ragnaros'
 SELL_INS = range(50, -31, -5)
-QUALITIES = range(50, -1, -5)
+QUALITIES = list(range(50, -1, -5)) + [1]
 
 
 def generate_items() -> list[Item]:
@@ -40,12 +40,6 @@ if __name__ == '__main__':
 
     item_data = []
     for item, expected in zip(items, expected_items):
-        if 'Conjured' in item.name and item.sell_in < 1:
-            expected_quality = item.quality - 4 if item.quality > 3 else 0
-            item_data.append(
-                (item.name, item.sell_in, item.quality, expected.sell_in, expected_quality)
-            )
-            continue
         item_data.append(
             (item.name, item.sell_in, item.quality, expected.sell_in, expected.quality)
         )
