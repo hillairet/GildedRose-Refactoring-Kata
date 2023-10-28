@@ -89,10 +89,7 @@ def _check_for_conjured(item: Item) -> Optional[Callable]:
 
     def _update_conjured(item: Item) -> None:
         item.sell_in = item.sell_in - 1
-        if item.quality < 2:
-            item.quality = 0
-            return
-        item.quality = item.quality - 2
+        _calculate_standard_decay(item=item, decay_rate=2)
 
     return _update_conjured
 
@@ -100,11 +97,11 @@ def _check_for_conjured(item: Item) -> Optional[Callable]:
 def _update_standard_item(item: Item) -> None:
     item.sell_in = item.sell_in - 1
 
-    _degrade_regularly(item=item)
+    _calculate_standard_decay(item=item)
 
 
-def _degrade_regularly(item: Item, decay_speed: int = 1) -> None:
-    increment = 2 * decay_speed if item.sell_in < 0 else decay_speed
+def _calculate_standard_decay(item: Item, decay_rate: int = 1) -> None:
+    increment = 2 * decay_rate if item.sell_in < 0 else decay_rate
 
     if item.quality < increment:
         item.quality = 0
