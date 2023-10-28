@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from typing import Callable, Optional
 
 
 class GildedRose(object):
@@ -16,12 +17,8 @@ def _update_item(item):
     if item_ext.is_sulfuras:
         return
 
-    if item_ext.is_aged_brie:
-        quality_increment = 1 if item.sell_in > 0 else 2
-        item.sell_in = item.sell_in - 1
-        if item.quality > 49:
-            return
-        item.quality = item.quality + quality_increment
+    if update_aged_brie := _check_for_aged_brie(item):
+        update_aged_brie(item)
         return
 
     if item_ext.is_backstage_passes:
@@ -60,11 +57,22 @@ class Item:
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
 
 
-class ItemExtended(Item):
-    @property
-    def is_aged_brie(self) -> bool:
-        return self.name == 'Aged Brie'
+def _check_for_aged_brie(item: Item) -> Optional[Callable]:
+    if item.name != 'Aged Brie':
+        return
 
+    def _update_aged_brie(item: Item) -> None:
+        quality_increment = 1 if item.sell_in > 0 else 2
+        item.sell_in = item.sell_in - 1
+        if item.quality > 49:
+            return
+        item.quality = item.quality + quality_increment
+        return
+
+    return _update_aged_brie
+
+
+class ItemExtended(Item):
     @property
     def is_backstage_passes(self) -> bool:
         return self.name.startswith('Backstage passes')
