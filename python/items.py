@@ -8,7 +8,7 @@ class Item:
         self.quality = quality
 
     def __repr__(self):
-        return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+        return '%s, %s, %s' % (self.name, self.sell_in, self.quality)
 
 
 class ExtendedItem(ABC):

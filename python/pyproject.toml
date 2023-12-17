@@ -10,7 +10,15 @@ python = "^3.11"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"
+ruff = "^0.1.8"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 99
+
+[tool.ruff.format]
+# Use single quotes rather than double quotes.
+quote-style = "single"
